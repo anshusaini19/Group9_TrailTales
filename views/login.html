@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrailTales - Login</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/" class="logo">TrailTales</a>
+        <div class="nav-links">
+            <a href="/api/contact">Contact Us</a>
+            <a href="/api/register">Register</a>
+        </div>
+    </div>
+
+    <div class="login-container">
+        <div class="brand">TrailTales</div>
+        <h1>Login</h1>
+        <form action="/api/login" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <div class="checkbox-container">
+                <label>
+                    <input type="checkbox" id="showPassword">
+                    Show Password
+                </label>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script src="/js/login.js"></script>
+</body>
+</html>

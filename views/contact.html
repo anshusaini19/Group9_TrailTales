@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/contact.css"> <!-- External CSS -->
+</head>
+<body>
+
+<header>
+    <div class="logo">TrailTales</div>
+    <nav>
+        <a href="/api/home">Home</a>
+        <a href="/api/about">About</a>
+        <a href="/api/destinations">Destinations</a>
+        <a href="/api/gallery">Gallery</a>
+        <a href="/api/testimonials">Testimonials</a>
+        <a href="/api/contact">Contact</a>
+        <a href="/api/book">Book Now</a>
+    </nav>
+</header>
+
+<section class="contact-container">
+    <h2>Contact Us</h2>
+
+    <div class="form-container">
+        <form id="contactForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit" id="submitBtn">Send Message</button>
+            <p id="responseMessage"></p> <!-- Message Display -->
+        </form>
+    </div>
+
+    <div class="contact-info">
+        <h4>Our Contact Information</h4>
+        <p><strong>Address:</strong> 123 Travel Lane, City, Country</p>
+        <p><strong>Email:</strong> contact@trailtales.com</p>
+        <p><strong>Phone:</strong> +123 456 7890</p>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 TrailTales. All rights reserved.</p>
+</footer>
+
+<script src="/js/contact.js"></script> <!-- External JavaScript -->
+</body>
+</html>

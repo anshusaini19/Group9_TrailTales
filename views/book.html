@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - TrailTales</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('/Images/book1.jpg'); /* Add your background image here */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Navbar Styles */
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 30px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background: #3B82F6;
+            color: #fff;
+        }
+
+        /* Booking Page Styles */
+        .booking-container {
+            max-width: 600px;
+            margin: 100px auto; /* Adjusted for navbar */
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .btn-submit {
+            background-color: #3B82F6;
+            color: white;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #2563eb;
+            transform: translateY(-3px);
+        }
+
+        .package-name {
+            font-weight: bold;
+            color: #3B82F6;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const packageName = urlParams.get("package");
+
+            const packageDetails = {
+                alps: { name: "Explore the Alps", price: "$999", duration: "7 Days / 6 Nights" },
+                beach: { name: "Beach Paradise", price: "$799", duration: "5 Days / 4 Nights" },
+                safari: { name: "Safari Adventure", price: "$899", duration: "6 Days / 5 Nights" }
+            };
+
+            if (packageName && packageDetails[packageName]) {
+                const packageInfo = packageDetails[packageName];
+                document.getElementById("package-name").textContent = packageInfo.name;
+                document.getElementById("package-price").textContent = packageInfo.price;
+                document.getElementById("package-duration").textContent = packageInfo.duration;
+            } else {
+                document.getElementById("package-name").textContent = "Unknown Package";
+                document.getElementById("package-price").textContent = "N/A";
+                document.getElementById("package-duration").textContent = "N/A";
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <div class="logo">TrailTales</div>
+        <nav>
+            <a href="/api/home">Home</a>
+            <a href="/api/about">About</a>
+            <a href="/api/destinations">Destinations</a>
+            <a href="/api/gallery">Gallery</a>
+            <a href="/api/testimonials">Testimonials</a>
+            <a href="/api/contact">Contact</a>
+            <a href="/api/book">Book Now</a>
+        </nav>
+        
+    </header>
+
+    <!-- Booking Form -->
+    <div class="booking-container">
+        <div class="booking-header">
+            <h1>Booking Details</h1>
+        </div>
+        <p>
+            <strong>Package:</strong> <span class="package-name" id="package-name"></span>
+        </p>
+        <p>
+            <strong>Price:</strong> <span id="package-price"></span>
+        </p>
+        <p>
+            <strong>Duration:</strong> <span id="package-duration"></span>
+        </p>
+        <form>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Preferred Date</label>
+                <input type="date" class="form-control" id="date" required>
+            </div>
+            <button type="submit" class="btn btn-submit btn-block">Confirm Booking</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Travel Packages</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-image: url('/Images/packagesbg.webp');; /* Add your background image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 30px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background: #3B82F6;
+            color: #fff;
+        }
+
+        .packages-section {
+            padding: 80px 20px;
+            margin-top: 50px;
+        }
+
+        .packages-header h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 50px;
+            color: black; /* White text for the header */
+        }
+
+        .package-item {
+            display: flex;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .package-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .package-item img {
+            width: 400px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .package-details {
+            padding: 20px;
+            flex: 1;
+        }
+
+        .package-details h4 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .package-details p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .package-details .rating {
+            font-size: 1.2rem;
+            color: #FFD700;
+        }
+
+        .package-details .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3B82F6;
+            margin: 15px 0;
+        }
+
+        .btn-book-now {
+            background-color: #3B82F6;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 50px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-book-now:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
+        }
+		/* Footer styles */
+    .footer {
+        background-color: #333;
+        color: white;
+        padding: 30px 0;
+        margin-top: 50px;
+    }
+
+    .footer a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .footer a:hover {
+        color: #3B82F6;
+    }
+
+    .footer .social-icon {
+        margin-right: 15px;
+    }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">TrailTales</div>
+    <nav>
+        <a href="/api/home">Home</a>
+        <a href="/api/about">About</a>
+        <a href="/api/destinations">Destinations</a>
+        <a href="/api/gallery">Gallery</a>
+        <a href="/api/testimonials">Testimonials</a>
+        <a href="/api/contact">Contact</a>
+        <a href="/api/book">Book Now</a>
+    </nav>
+    
+</header>
+
+<div class="packages-section">
+    <div class="packages-header">
+        <h2>Our Travel Packages</h2>
+    </div>
+
+    <!-- Package 1 -->
+    <div class="package-item">
+        <img src="/Images/packages1.jpg" alt="Destination 1">
+        <div class="package-details">
+            <h4>Package 1: Adventure in the Alps</h4>
+            <p>Explore the breathtaking beauty of the Swiss Alps in this thrilling 7-day adventure.</p>
+            <div class="rating">★★★★★</div>
+            <p><strong>Duration:</strong> 7 Days</p>
+            <p><strong>Max People:</strong> 10</p>
+            <p class="price">$1200</p>
+            <button class="btn-book-now">Book Now</button>
+        </div>
+    </div>
+
+    <!-- Package 2 -->
+    <div class="package-item">
+        <img src="/Images/packages2.jpg" alt="Destination 2">
+        <div class="package-details">
+            <h4>Package 2: Tropical Paradise</h4>
+            <p>Relax in the pristine beaches of Bali with this luxury 5-day retreat.</p>
+            <div class="rating">★★★★☆</div>
+            <p><strong>Duration:</strong> 5 Days</p>
+            <p><strong>Max People:</strong> 12</p>
+            <p class="price">$850</p>
+            <button class="btn-book-now">Book Now</button>
+        </div>
+    </div>
+
+    <!-- Package 3 -->
+    <div class="package-item">
+        <img src="/Images/packages3.jpg" alt="Destination 3">
+        <div class="package-details">
+            <h4>Package 3: Safari Expedition</h4>
+            <p>Embark on a once-in-a-lifetime safari in the African savannah.</p>
+            <div class="rating">★★★★★</div>
+            <p><strong>Duration:</strong> 10 Days</p>
+            <p><strong>Max People:</strong> 8</p>
+            <p class="price">$2500</p>
+            <button class="btn-book-now">Book Now</button>
+        </div>
+    </div>
+
+</div>
+
+<footer class="footer">
+    <div class="container text-center">
+        <p>&copy; 2024 TrailTales. All rights reserved. | <a href="#">Privacy Policy</a></p>
+        
+    </div>
+</footer>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
