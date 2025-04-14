@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popular Destinations</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-image: url('/Images/destinations.jpg'); /* Add your background image here */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 30px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background: #3B82F6;
+            color: #fff;
+        }
+
+        .destinations-section {
+            padding: 80px 20px;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .destinations-header h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .destinations-header p {
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .destination-item {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            background-color: #fff;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 30px;
+        }
+
+        .destination-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .destination-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .destination-item h4 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .destination-item p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .rating {
+            font-size: 1.2rem;
+            color: #FFD700;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #3B82F6;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-discover, .btn-packages {
+            margin-top: 40px;
+            background-color: #3B82F6;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-right: 20px; /* Adds space between buttons */
+        }
+
+        .btn-discover:hover, .btn-packages:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .additional-destinations {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">TrailTales</div>
+    <nav>
+        <a href="/api/home">Home</a>
+        <a href="/api/about">About Us</a>
+        <a href="/api/destinations">Destinations</a>
+        <a href="/api/gallery">Gallery</a>
+        <a href="/api/testimonials">Testimonials</a>
+        <a href="/api/contact">Contact Us</a>
+        <a href="/api/book">Book Now</a>
+      
+    </nav>
+</header>
+
+<div class="destinations-section">
+    <div class="destinations-header">
+        <h2>Popular Destinations</h2>
+        <p>Explore the most amazing travel destinations handpicked just for you!</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="destination-item">
+                <img src="/Images/destination1.jpeg" alt="Destination 1">
+                <h4>Rome,Italy</h4>
+                <p>Rome, Italy  
+                    Rome, the Eternal City, is a timeless destination where history, art, and culture come alive. Known for its ancient landmarks like the Colosseum, Roman Forum, and the Pantheon, the city offers a journey through centuries of human achievement. Stroll through charming piazzas, toss a coin in the Trevi Fountain, and admire the awe-inspiring beauty of Vatican City, home to St. Peter’s Basilica and the Sistine Chapel. With its vibrant streets, world-renowned Italian cuisine, and an enchanting blend of old and new, Rome promises an unforgettable travel experience.</p>
+                <div class="rating">★★★★☆</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="destination-item">
+                <img src="/Images/destination2.jpeg" alt="Destination 2">
+                <h4>Spiez, BE, Switzerland</h4>
+                <p>Spiez, Switzerland
+                    Nestled on the shores of Lake Thun in the Bernese Oberland, Spiez is a picturesque Swiss town known for its stunning alpine views and serene ambiance. Dominated by the historic Spiez Castle and surrounded by lush vineyards, it offers a perfect blend of history, nature, and tranquility. Visitors can enjoy boating on the crystal-clear lake, hiking scenic trails, or indulging in local wines. With its postcard-perfect charm and peaceful vibe, Spiez is an idyllic escape for nature lovers and those seeking a quintessential Swiss experience.</p>
+                <div class="rating">★★★★★</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="destination-item">
+                <img src="/Images/destination3.jpeg" alt="Destination 3">
+                <h4>London,UK</h4>
+                <p>London, UK
+                    London, the capital of the United Kingdom, is a dynamic blend of history, culture, and modernity. From the iconic Big Ben and Tower Bridge to the majestic Buckingham Palace, the city is home to some of the world’s most famous landmarks. Explore the British Museum, stroll through the scenic parks, or enjoy the vibrant West End theatre scene. With a rich history, diverse culture, and cutting-edge fashion and food, London offers something for every traveler, making it a must-visit destination for anyone looking to experience the heart of Europe.
+                    
+                    
+                    
+                    
+                    
+                    
+                    </p>
+                <div class="rating">★★★☆☆</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Discover More Button and Packages Button -->
+    <div>
+        <!--<button class="btn-discover" id="discoverBtn" onclick="toggleDestinations()">
+            Discover More
+        </button> -->
+        <a href="/api/packages" class="btn-packages">View Packages</a>
+    </div>
+
+    <!-- Additional Destinations (hidden initially) -->
+    <div id="moreDestinations" class="collapse additional-destinations">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="destination-item">
+                    <img src="https://images.pexels.com/photos/1308940/pexels-photo-1308940.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Destination 4">
+                    <h4>Paris,France</h4>
+                    <p>Paris, France
+                        Paris, the City of Light, is a captivating blend of romance, art, and culture. Known for its iconic landmarks such as the Eiffel Tower, Notre-Dame Cathedral, and the Louvre Museum, Paris offers a rich history and stunning architecture. Wander through charming streets, explore world-class galleries, and indulge in exquisite French cuisine at cozy cafés. With its elegant atmosphere, vibrant fashion scene, and timeless allure, Paris is a must-visit destination for those seeking beauty, sophistication, and unforgettable experiences.
+                        
+                        
+                        
+                        
+                        
+                        
+                        </p>
+                    <div class="rating">★★★★☆</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="destination-item">
+                    <img src="https://images.pexels.com/photos/1239162/pexels-photo-1239162.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Destination 5">
+                    <h4>New York,US</h4>
+                    <p>New York City, USA
+                        New York City, the city that never sleeps, is a vibrant hub of culture, art, and excitement. From the iconic Statue of Liberty and Empire State Building to the bustling Times Square and Central Park, NYC offers something for everyone. Explore world-class museums like the Metropolitan Museum of Art, catch a Broadway show, or walk along the scenic Brooklyn Bridge. With its diverse neighborhoods, renowned dining, and endless attractions, New York City is a dynamic and unforgettable destination. Whether you're an art lover, food enthusiast, or adventurer, the Big Apple has it all.
+                        
+                        
+                        
+                        
+                        
+                        
+                        </p>
+                    <div class="rating">★★★★★</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="destination-item">
+                    <img src="https://images.pexels.com/photos/2506923/pexels-photo-2506923.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Destination 6">
+                    <h4>Tokyo,Japan</h4>
+                    <p>Tokyo, Japan
+                        Tokyo, a bustling metropolis where tradition meets modernity, is a vibrant blend of futuristic skyscrapers, serene temples, and cultural treasures. Explore the neon-lit streets of Shibuya, shop in the stylish districts of Harajuku, and visit historic sites like the Meiji Shrine and the Imperial Palace. Tokyo offers a unique culinary experience, from sushi to ramen, and its innovative technology and pop culture make it a must-visit for tech enthusiasts and trendsetters alike. Whether you’re seeking cutting-edge innovation or tranquil gardens, Tokyo offers something for every traveler.
+                        
+                        
+                        
+                        
+                        
+                        
+                        </p>
+                    <div class="rating">★★★☆☆</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 TrailTales. All rights reserved. | <a href="#">Privacy Policy</a></p>
+</footer>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    function toggleDestinations() {
+    var moreDestinations = document.getElementById('moreDestinations');
+    var discoverBtn = document.getElementById('discoverBtn');
+
+    // Check if the element is currently hidden
+    if (moreDestinations.style.display === "none" || moreDestinations.style.display === "") {
+        moreDestinations.style.display = "block";
+        discoverBtn.textContent = "Discover Less";
+    } else {
+        moreDestinations.style.display = "none";
+        discoverBtn.textContent = "Discover More";
+    }
+}
+
+</script>
+
+</body>
+</html>

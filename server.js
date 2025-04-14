@@ -63,7 +63,11 @@ app.use(express.urlencoded({ extended: true })); // To parse URL-encoded data
 app.use(logger); // Log each request
 
 // Serve static files (HTML, CSS, JS) from the /public directory
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'ejs'); // Set EJS as templating engine
+app.set('views', path.join(__dirname, 'views')); // Optional if you're using /views
+
+app.use(express.static(path.join(__dirname, 'public'))); // Keep this for CSS/images/JS
 
 
 
@@ -73,50 +77,69 @@ app.use('/api', apiRoutes); // Mount the API routes on /api path
 
 // Serve login.html at the root URL
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'login.html')); // Serve the login page at root URL
+  res.render('login');
+  //res.sendFile(path.join(__dirname, 'views', 'login.html')); // Serve the login page at root URL
 });
 
 // Serve dashboard.html when user is authenticated
 app.get('/api/home', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'home.html')); // Serve the dashboard HTML file
+  res.render('home');
+
+ // res.sendFile(path.join(__dirname, 'views', 'home.html')); // Serve the dashboard HTML file
 });
 
 // Serve about.html when navigating to /api/about
 app.get('/api/about', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'about.html')); // Serve the about page
+  res.render('about');
+
+  //res.sendFile(path.join(__dirname, 'views', 'about.html')); // Serve the about page
 });
 
 // Serve destinations.html when navigating to /api/destinations
 app.get('/api/destinations', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'destinations.html')); // Serve the destinations page
+  res.render('destinations');
+
+  //res.sendFile(path.join(__dirname, 'views', 'destinations.html')); // Serve the destinations page
 });
 
 // Serve register.html when user needs to register
 app.get('/api/register', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'register.html')); // Serve the register HTML file
+  res.render('register');
+
+  //res.sendFile(path.join(__dirname, 'views', 'register.html')); // Serve the register HTML file
 });
 // Serve destinations.html when navigating to /api/destinations
 app.get('/api/packages', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'packages.html')); // Serve the destinations page
+  res.render('packages');
+
+  //res.sendFile(path.join(__dirname, 'views', 'packages.html')); // Serve the destinations page
 });
 
 // Serve gallery.html when navigating to /api/gallery
 app.get('/api/gallery', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'gallery.html')); // Serve the destinations page
+  res.render('gallery');
+
+  //res.sendFile(path.join(__dirname, 'views', 'gallery.html')); // Serve the destinations page
 });
 
 app.get('/api/contact', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'contact.html')); // Serve the destinations page
+  res.render('contact');
+
+  //res.sendFile(path.join(__dirname, 'views', 'contact.html')); // Serve the destinations page
 });
 
 // Serve book.html when navigating to /api/book
 app.get('/api/book', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'book.html')); // Serve the Book Now page
+  res.render('book');
+
+  //res.sendFile(path.join(__dirname, 'views', 'book.html')); // Serve the Book Now page
 });
 
 // Serve testimonials.html when navigating to /api/testimonials
 app.get('/api/testimonials', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'testimonials.html')); // Serve the Testimonials page
+  res.render('testimonials');
+
+  //res.sendFile(path.join(__dirname, 'views', 'testimonials.html')); // Serve the Testimonials page
 });
 
 
