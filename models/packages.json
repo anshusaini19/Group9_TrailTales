@@ -1,0 +1,21 @@
+[
+    {
+      "id": 1,
+      "name": "Beach Paradise",
+      "description": "Relax on the beautiful beaches.",
+      "price": "$1200"
+    },
+    {
+      "id": 2,
+      "name": "Mountain Adventure",
+      "description": "Explore the peaks and enjoy thrilling activities.",
+      "price": "$1500"
+    },
+    {
+      "id": 3,
+      "name": "City Explorer",
+      "description": "Discover the culture and attractions of the city.",
+      "price": "$900"
+    }
+  ]
+  

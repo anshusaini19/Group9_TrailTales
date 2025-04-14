@@ -63,6 +63,41 @@ router.post('/contact', (req, res, next) => {
     });
   });
 });
+// Route for packages
+router.get('/packages', (req, res) => {
+  const packagesPath = path.join(__dirname, '../models/packages.json');
+  fs.readFile(packagesPath, 'utf8', (err, data) => {
+    if (err) {
+      res.status(500).send('Error reading packages data');
+      return;
+    }
+    const packages = JSON.parse(data);
+    res.render('packages', { packages });
+  });
+});
+
+router.get('/book/:id', (req, res) => {
+  const packageId = req.params.id;
+  const packagesPath = path.join(__dirname, '../models/packages.json');
+  fs.readFile(packagesPath, 'utf8', (err, data) => {
+    if (err) {
+      res.status(500).send('Error reading package data');
+      return;
+    }
+    const packages = JSON.parse(data);
+    const selectedPackage = packages.find(pkg => pkg.id == packageId);
+    res.render('book', { package: selectedPackage });
+  });
+});
+
+router.post('/book', (req, res) => {
+  const { packageId, name, email } = req.body;
+  // Process booking (e.g., store in database, send confirmation, etc.)
+  res.send(`Booking confirmed for ${name} on package ID ${packageId}`);
+});
+
+
+
 
 
 module.exports = router // Export the router so it can be used in server.js

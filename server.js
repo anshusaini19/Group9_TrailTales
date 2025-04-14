@@ -6,6 +6,8 @@ const rateLimit = require('express-rate-limit'); // Import express-rate-limit
 const compression = require('compression'); // Import compression middleware
 const cors = require('cors'); // Import CORS
 const cookieParser = require('cookie-parser'); // Import cookie-parser middleware
+const fs = require('fs');
+
 const app = express();
 const PORT = 8080;
 
@@ -140,6 +142,25 @@ app.get('/api/testimonials', (req, res) => {
   res.render('testimonials');
 
   //res.sendFile(path.join(__dirname, 'views', 'testimonials.html')); // Serve the Testimonials page
+});
+app.get('/book/:id', (req, res) => {
+  const packageId = req.params.id;
+  const packagesPath = path.join(__dirname, 'models/packages.json');
+
+  fs.readFile(packagesPath, 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).send('Error reading packages data');
+    }
+
+    const packages = JSON.parse(data);
+    const selectedPackage = packages.find(pkg => pkg.id == packageId);
+
+    if (!selectedPackage) {
+      return res.status(404).send('Package not found');
+    }
+
+    res.render('book', { package: selectedPackage });
+  });
 });
 
 
