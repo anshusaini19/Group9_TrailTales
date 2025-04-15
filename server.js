@@ -90,6 +90,8 @@ app.get('/api/about', (req, res) => {
   });
 });
 
+
+
 // Render other EJS pages
 app.get('/api/destinations', (req, res) => res.render('destinations'));
 app.get('/api/register', (req, res) => res.render('register'));

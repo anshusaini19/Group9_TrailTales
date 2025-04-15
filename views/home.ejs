@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TrailTales - Explore the World</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/home.css" />
 </head>
 <body>
   <!-- Header -->
@@ -18,13 +18,12 @@
       <a href="/api/gallery" class="text-white mx-2">Gallery</a>
       <a href="/api/testimonials" class="text-white mx-2">Testimonials</a>
       <a href="/api/contact" class="text-white mx-2">Contact Us</a>
-      <!--<a href="/api/book" class="btn btn-primary mx-2">Book Now</a>-->
       <a href="/api/logout" class="text-white mx-2">Logout</a>
     </nav>
   </header>
 
   <!-- Hero Section -->
-  <section class="hero text-white text-center d-flex align-items-center justify-content-center" style="background-image: url('/Images/hero.jpg'); height: 80vh; background-size: cover; background-position: center;">
+  <section class="hero">
     <div>
       <h1 class="display-4 mb-3">Welcome<% if (username) { %>, <%= username %><% } %>!</h1>
       <p class="lead">Embark on your next adventure with TrailTales</p>
@@ -34,15 +33,11 @@
   <!-- About Section -->
   <section id="aboutu" class="py-5">
     <div class="container">
-      <h2 class="text-center mb-5">About <span style="color: #3B82F6;">TrailTales</span></h2>
+      <h2 class="text-center mb-5">About <span class="highlight">TrailTales</span></h2>
       <div class="row align-items-center">
         <div class="col-md-6">
-          <p class="lead mb-4">
-            TrailTales is your ultimate travel itinerary planner, designed to turn your dream vacations into reality. Whether you're looking to hike majestic mountains, soak up the sun on pristine beaches, or explore vibrant cities, we've got you covered.
-          </p>
-          <p class="lead mb-4">
-            Whether you're a solo traveler, couple, or family, our platform provides curated destinations, travel tips, and customizable booking options to help you plan effortlessly and create memories for a lifetime!
-          </p>
+          <p class="lead mb-4"><%= about1 %></p>
+          <p class="lead mb-4"><%= about2 %></p>
         </div>
         <div class="col-md-6 text-center">
           <img src="/Images/about.jpg" alt="About TrailTales" class="img-fluid rounded shadow">
@@ -55,10 +50,5 @@
   <footer class="bg-dark text-white text-center py-3">
     <p>&copy; <%= new Date().getFullYear() %> TrailTales. All rights reserved. | <a href="#" class="text-light">Privacy Policy</a></p>
   </footer>
-
-  <!-- JS Scripts -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

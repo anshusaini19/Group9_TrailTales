@@ -104,6 +104,30 @@ router.get('/logout', (req, res) => {
   res.redirect('/'); // Redirect to the login page
 });
 
+router.get('/home', (req, res) => {
+  const filePath = path.join(__dirname, '..', 'models', 'home.json'); // correct relative path
+
+  fs.readFile(filePath, 'utf8', (err, jsonData) => {
+    if (err) {
+      console.error('Failed to read home.json:', err);
+      return res.status(500).json({ error: 'Internal Server Error', message: err.message });
+    }
+
+    try {
+      const data = JSON.parse(jsonData);
+      const username = req.cookies?.username || null;
+      res.render('home', {
+        username,
+        about1: data.about1,
+        about2: data.about2
+      });
+    } catch (parseError) {
+      console.error('Failed to parse JSON:', parseError);
+      return res.status(500).json({ error: 'JSON Parsing Error', message: parseError.message });
+    }
+  });
+});
+
 
 
 
