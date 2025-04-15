@@ -83,12 +83,17 @@ app.get('/', (req, res) => {
   //res.sendFile(path.join(__dirname, 'views', 'login.html')); // Serve the login page at root URL
 });
 
-// Serve dashboard.html when user is authenticated
+// Example using Express route
 app.get('/api/home', (req, res) => {
-  res.render('home');
+  const username = req.cookies.username; // Assuming it's stored in cookies
+  res.render('home', { username });
+});
+
+
+
 
  // res.sendFile(path.join(__dirname, 'views', 'home.html')); // Serve the dashboard HTML file
-});
+
 
 // Serve about.html when navigating to /api/about
 app.get('/api/about', (req, res) => {

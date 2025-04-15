@@ -12,6 +12,8 @@ router.post('/login', (req, res, next) => {
     const users = JSON.parse(data) // Parse JSON data to get the user list
     const user = users.find(u => u.username === username && u.password === password) // Find matching user
     if (user) {
+      res.cookie('username', user.username, { httpOnly: true }); // Set the cookie
+
       // If user exists, redirect to the dashboard
       return res.status(302).redirect('/api/home') // Redirect to dashboard.html
     } else {
@@ -95,6 +97,15 @@ router.post('/book', (req, res) => {
   // Process booking (e.g., store in database, send confirmation, etc.)
   res.send(`Booking confirmed for ${name} on package ID ${packageId}`);
 });
+
+// Logout route
+router.get('/logout', (req, res) => {
+  res.clearCookie('username'); // Clear the login cookie
+  res.redirect('/'); // Redirect to the login page
+});
+
+
+
 
 
 
