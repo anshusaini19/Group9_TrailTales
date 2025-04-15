@@ -4,19 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Packages</title>
-  <link rel="stylesheet" href="/public/css/styles.css">
+  <link rel="stylesheet" href="/css/packages.css">
 </head>
 <body>
   <h1>Our Travel Packages</h1>
   <div class="package-container">
     <% packages.forEach(package => { %>
-      <div class="package">
-        <h2><%= package.name %></h2>
-        <p><%= package.description %></p>
-        <p><strong>Price: <%= package.price %></strong></p>
-        <a href="/book/<%= package.id %>">Book Now</a>
+      <div class="package-card">
+        <img src="/<%= package.image %>" alt="<%= package.name %>">
+        <div class="package-details">
+          <h2><%= package.name %></h2>
+          <p><%= package.description %></p>
+          <p><strong>Price: <%= package.price %></strong></p>
+          <a href="/book/<%= package.id %>" class="book-btn">Book Now</a>
+        </div>
       </div>
     <% }) %>
   </div>
+  
 </body>
 </html>
