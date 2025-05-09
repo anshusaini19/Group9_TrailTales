@@ -4,29 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TrailTales - Explore the World</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/home.css" />
 </head>
 <body>
   <!-- Header -->
-  <header class="bg-dark text-white p-3 d-flex justify-content-between align-items-center">
+  <header class="bg-dark text-white p-3 d-flex justify-content-between align-items-center sticky-top">
     <div class="logo font-weight-bold h4">TrailTales</div>
     <nav>
-      <a href="/api/home" class="text-white mx-2">Home</a>
-      <a href="/api/about" class="text-white mx-2">About Us</a>
-      <a href="/api/destinations" class="text-white mx-2">Destinations</a>
-      <a href="/api/gallery" class="text-white mx-2">Gallery</a>
-      <a href="/api/testimonials" class="text-white mx-2">Testimonials</a>
-      <a href="/api/contact" class="text-white mx-2">Contact Us</a>
-      <a href="/api/logout" class="text-white mx-2">Logout</a>
+      <a href="/api/home" class="text-white mx-3">Home</a>
+      <a href="/api/about" class="text-white mx-3">About Us</a>
+      <a href="/api/destinations" class="text-white mx-3">Destinations</a>
+      <a href="/api/gallery" class="text-white mx-3">Gallery</a>
+      <a href="/api/testimonials" class="text-white mx-3">Testimonials</a>
+      <a href="/api/contact" class="text-white mx-3">Contact Us</a>
+      <a href="/api/logout" class="text-white mx-3">Logout</a>
     </nav>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
-    <div>
+    <div class="hero-overlay">
       <h1 class="display-4 mb-3">Welcome<% if (username) { %>, <%= username %><% } %>!</h1>
       <p class="lead">Embark on your next adventure with TrailTales</p>
+      <a href="/api/destinations" class="btn btn-primary btn-lg">Explore Now</a>
     </div>
   </section>
 
@@ -40,15 +42,128 @@
           <p class="lead mb-4"><%= about2 %></p>
         </div>
         <div class="col-md-6 text-center">
-          <img src="/Images/about.jpg" alt="About TrailTales" class="img-fluid rounded shadow">
+          <img src="/Images/about.jpg" alt="About TrailTales" class="img-fluid rounded shadow-lg">
         </div>
       </div>
     </div>
   </section>
+  <!-- Features Section -->
+<section class="features py-5 text-white">
+  <div class="container">
+    <h2 class="text-center mb-5">What We Offer</h2>
+    <div class="row text-center">
+      <div class="col-md-4 mb-4">
+        <div class="feature-card p-4 shadow-sm rounded">
+          <i class="fas fa-map-marked-alt fa-3x mb-3"></i>
+          <h5>Curated Destinations</h5>
+          <p>Explore handpicked locations that suit your travel style and mood.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature-card p-4 shadow-sm rounded">
+          <i class="fas fa-calendar-check fa-3x mb-3"></i>
+          <h5>Easy Booking</h5>
+          <p>Book trips effortlessly with our user-friendly booking system.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature-card p-4 shadow-sm rounded">
+          <i class="fas fa-user-shield fa-3x mb-3"></i>
+          <h5>Verified Guides</h5>
+          <p>Travel with confidence—our local experts are certified and reliable.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works py-5 bg-white">
+  <div class="container">
+    <h2 class="text-center mb-5">How TrailTales Works</h2>
+    <div class="row text-center">
+      <div class="col-md-4 mb-4">
+        <div class="step-card p-4 shadow-sm rounded">
+          <i class="fas fa-search-location fa-3x text-primary mb-3"></i>
+          <h5>1. Discover</h5>
+          <p>Browse stunning destinations with detailed itineraries and tips.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="step-card p-4 shadow-sm rounded">
+          <i class="fas fa-file-signature fa-3x text-primary mb-3"></i>
+          <h5>2. Plan & Book</h5>
+          <p>Choose your package, customize it, and book directly through our platform.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="step-card p-4 shadow-sm rounded">
+          <i class="fas fa-plane-departure fa-3x text-primary mb-3"></i>
+          <h5>3. Travel Smart</h5>
+          <p>Enjoy a smooth, personalized trip backed by verified local experts.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Why Choose Us -->
+<section class="why-us bg-light py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Why TrailTales?</h2>
+    <div class="row text-center">
+      <div class="col-md-3">
+        <div class="icon-box">
+          <i class="fas fa-thumbs-up fa-2x mb-2 text-primary"></i>
+          <p>Trusted by 10,000+ travelers</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="icon-box">
+          <i class="fas fa-clock fa-2x mb-2 text-primary"></i>
+          <p>24/7 Customer Support</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="icon-box">
+          <i class="fas fa-globe fa-2x mb-2 text-primary"></i>
+          <p>Global Reach</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="icon-box">
+          <i class="fas fa-heart fa-2x mb-2 text-primary"></i>
+          <p>Personalized Trips</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta text-white text-center py-5">
+  <div class="container">
+    <h2 class="mb-3">Ready to Explore?</h2>
+    <p class="lead mb-4">Join TrailTales and make your travel dreams a reality!</p>
+    <a href="/api/destinations" class="btn btn-lg btn-light">Get Started</a>
+  </div>
+</section>
+
 
   <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-3">
-    <p>&copy; <%= new Date().getFullYear() %> TrailTales. All rights reserved. | <a href="#" class="text-light">Privacy Policy</a></p>
+  <footer class="bg-dark text-white text-center py-4">
+    <div class="container">
+      <p>&copy; <%= new Date().getFullYear() %> TrailTales. All rights reserved.</p>
+      <p><a href="#" class="text-light">Privacy Policy</a> | <a href="#" class="text-light">Terms of Service</a></p>
+      <div class="social-icons">
+        <a href="#" class="text-light mx-2"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-light mx-2"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-light mx-2"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
   </footer>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 </html>

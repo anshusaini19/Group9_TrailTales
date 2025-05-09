@@ -1,24 +1,222 @@
+/* Global Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #3B82F6;
+}
+
+/* Hero Section */
 .hero {
-    background-image: url('/Images/hero.jpg');
-    height: 80vh;
-    background-size: cover;
-    background-position: center;
-    color: white;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .highlight {
-    color: #3B82F6;
-  }
-  
-  .logo {
-    font-size: 1.8rem;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/Images/hero.jpg') no-repeat center center;
+  background-size: cover;
+  height: 80vh;
+  position: relative;
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-overlay {
+  padding: 40px;
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.hero h1 {
+  font-size: 4rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  background-color: #3B82F6;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #2563eb;
+}
+
+/* About Section */
+#aboutu {
+  background-color: #f9f9f9;
+  padding: 60px 0;
+}
+
+.highlight {
+  color: #3B82F6;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.row {
+  margin-top: 30px;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+}
+
+footer .social-icons a {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+footer .social-icons a:hover {
+  color: #3B82F6;
+}
+
+/* Navbar Styling */
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.nav a {
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-right: 20px;
+}
+
+.nav a:hover {
+  color: #3B82F6;
+  text-decoration: none;
+}
+
+.features {
+  background: linear-gradient(to right, #3B82F6, #2563eb);
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #fff;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+.feature-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.packages .card-img-top {
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.why-us .icon-box {
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+.why-us .icon-box:hover {
+  transform: scale(1.05);
+}
+
+.cta {
+  background: url('/Images/cta.jpg') center center/cover no-repeat;
+  background-attachment: fixed;
+  backdrop-filter: blur(4px);
+}
+/* How It Works Section */
+.how-it-works {
+  background-color: #ffffff;
+  padding: 80px 0;
+}
+
+.how-it-works h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.how-it-works h2::after {
+  content: '';
+  width: 60px;
+  height: 4px;
+  background: #3B82F6;
+  display: block;
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+.step-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px 25px;
+  transition: all 0.4s ease;
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.step-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(59, 130, 246, 0.15);
+}
+
+.step-card i {
+  color: #3B82F6;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.step-card:hover i {
+  transform: scale(1.1);
+}
+
+.step-card h5 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+.step-card p {
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+
+

@@ -1,138 +1,188 @@
-const express = require('express') // Express for routing 
-const path = require('path') // Path to handle file paths
-const fs = require('fs') // FS module for reading and writing files
-const router = express.Router() // Create an instance of Express Router
+const express = require('express');
+const router = express.Router();
+const User = require('../models/mongo/user');
+const Contact = require('../models/mongo/Contact');
+const Package = require('../models/mongo/Package');
+const HomeContent = require('../models/mongo/HomeContent');
+const Booking = require('../models/mongo/Booking');
+const Destination = require('../models/mongo/destination');
+const About = require('../models/mongo/about');  // Import the About model
+const Gallery = require('../models/mongo/gallery');
+const Testimonial = require('../models/mongo/testimonial');
 
 // Login route
-router.post('/login', (req, res, next) => {
-  const { username, password } = req.body // Destructure username and password from the request body
-  // Read users data from the users.json file
-  fs.readFile(path.join(__dirname, '../models/users.json'), 'utf-8', (err, data) => {
-    if (err) return next(err) // Pass any error to the error handling middleware
-    const users = JSON.parse(data) // Parse JSON data to get the user list
-    const user = users.find(u => u.username === username && u.password === password) // Find matching user
+router.post('/login', async (req, res, next) => {
+  try {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username, password });
     if (user) {
-      res.cookie('username', user.username, { httpOnly: true }); // Set the cookie
-
-      // If user exists, redirect to the dashboard
-      return res.status(302).redirect('/api/home') // Redirect to dashboard.html
+      res.cookie('username', user.username, { httpOnly: true });
+      return res.redirect('/api/home');
     } else {
-      // If user doesn't exist, redirect to the register page
-      return res.status(302).redirect('/api/register') // Redirect to register.html
+      return res.redirect('/api/register');
     }
-  })
-})
+  } catch (err) {
+    next(err);
+  }
+});
 
 // Register route
-router.post('/register', (req, res, next) => {
-  const { username, password } = req.body // Destructure username and password
-  const newUser = { username, password } // Create a new user object
-  // Read users data from the users.json file
-  fs.readFile(path.join(__dirname, '../models/users.json'), 'utf-8', (err, data) => {
-    if (err) return next(err) // Pass any error to the error handling middleware
-    let users = []
-    if (data) {
-      users = JSON.parse(data) // Parse existing user data
-    }
-    users.push(newUser) // Add the new user to the users array
-    // Write the updated users array back to the JSON file
-    fs.writeFile(path.join(__dirname, '../models/users.json'), JSON.stringify(users, null, 2), (err) => {
-      if (err) return next(err) // Pass any error to the error handling middleware
-      res.status(302).redirect('/') // Redirect to login page after successful registration
-    })
-  })
-})
-
-router.post('/contact', (req, res, next) => {
-  console.log("Contact form submitted:", req.body); // Debug log
-
-  const { name, email, message } = req.body;
-  if (!name || !email || !message) {
-    return res.status(400).json({ error: "All fields are required" });
+router.post('/register', async (req, res, next) => {
+  try {
+    const { username, password } = req.body;
+    const newUser = new User({ username, password });
+    await newUser.save();
+    res.redirect('/');
+  } catch (err) {
+    next(err);
   }
-
-  fs.readFile(path.join(__dirname, '../models/contacts.json'), 'utf-8', (err, data) => {
-    if (err && err.code !== 'ENOENT') return next(err);
-    let contacts = [];
-    if (data) {
-      contacts = JSON.parse(data);
-    }
-    contacts.push({ name, email, message });
-
-    fs.writeFile(path.join(__dirname, '../models/contacts.json'), JSON.stringify(contacts, null, 2), (err) => {
-      if (err) return next(err);
-      res.json({ success: true, message: "Message stored successfully!" });
-    });
-  });
 });
-// Route for packages
-router.get('/packages', (req, res) => {
-  const packagesPath = path.join(__dirname, '../models/packages.json');
-  fs.readFile(packagesPath, 'utf8', (err, data) => {
-    if (err) {
-      res.status(500).send('Error reading packages data');
-      return;
+
+// Contact form route
+router.post('/contact', async (req, res, next) => {
+  try {
+    const { name, email, message } = req.body;
+    if (!name || !email || !message) {
+      return res.status(400).json({ error: 'All fields are required' });
     }
-    const packages = JSON.parse(data);
+    const contact = new Contact({ name, email, message });
+    await contact.save();
+    res.json({ success: true, message: 'Message stored successfully!' });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Get all packages
+router.get('/packages', async (req, res) => {
+  try {
+    const packages = await Package.find();
+    console.log(packages); 
     res.render('packages', { packages });
-  });
+  } catch (err) {
+    res.status(500).send('Error fetching packages');
+  }
 });
 
-router.get('/book/:id', (req, res) => {
-  const packageId = req.params.id;
-  const packagesPath = path.join(__dirname, '../models/packages.json');
-  fs.readFile(packagesPath, 'utf8', (err, data) => {
-    if (err) {
-      res.status(500).send('Error reading package data');
-      return;
+// Book a specific package by ID
+router.get('/book/:id', async (req, res) => {
+  try {
+    const selectedPackage = await Package.findById(req.params.id);
+
+    if (!selectedPackage) {
+      return res.status(404).send('Package not found');
     }
-    const packages = JSON.parse(data);
-    const selectedPackage = packages.find(pkg => pkg.id == packageId);
+
     res.render('book', { package: selectedPackage });
-  });
+  } catch (err) {
+    console.error('Error fetching package:', err);
+    res.status(500).send('Error reading package');
+  }
 });
 
-router.post('/book', (req, res) => {
-  const { packageId, name, email } = req.body;
-  // Process booking (e.g., store in database, send confirmation, etc.)
-  res.send(`Booking confirmed for ${name} on package ID ${packageId}`);
+
+router.post('/book', async (req, res, next) => {
+  try {
+    const { 
+      packageId,
+      name,
+      email,
+      phone,
+      people,
+      date,
+      specialRequests 
+    } = req.body;
+
+    // Input validation (basic checks)
+    if (!packageId || !name || !email || !phone || !people || !date) {
+      return res.status(400).json({ error: 'All fields are required' });
+    }
+
+    // Create a new booking document in MongoDB
+    const booking = new Booking({
+      packageId,
+      name,
+      email,
+      phone,
+      people,
+      date,
+      specialRequests
+    });
+
+    await booking.save();
+
+    // Optionally fetch package info for confirmation page
+    const selectedPackage = await Package.findById(packageId);
+
+    // Render confirmation page with booking details and package information
+    res.render('confirmation', { booking, package: selectedPackage });
+  } catch (err) {
+    next(err);
+  }
 });
+
+
+
 
 // Logout route
 router.get('/logout', (req, res) => {
-  res.clearCookie('username'); // Clear the login cookie
-  res.redirect('/'); // Redirect to the login page
+  res.clearCookie('username');
+  res.redirect('/');
 });
 
-router.get('/home', (req, res) => {
-  const filePath = path.join(__dirname, '..', 'models', 'home.json'); // correct relative path
+// Home route
+router.get('/home', async (req, res) => {
+  try {
+    const data = await HomeContent.findOne();
+    const username = req.cookies?.username || null;
+    res.render('home', {
+      username,
+      about1: data?.about1 || '',
+      about2: data?.about2 || ''
+    });
+  } catch (err) {
+    res.status(500).json({ error: 'Error loading home content' });
+  }
+});
 
-  fs.readFile(filePath, 'utf8', (err, jsonData) => {
-    if (err) {
-      console.error('Failed to read home.json:', err);
-      return res.status(500).json({ error: 'Internal Server Error', message: err.message });
-    }
+router.get('/destinations', async (req, res) => {
+  try {
+    const destinations = await Destination.find();
+    res.render('destinations', { destinations });
+  } catch (err) {
+    console.error('Failed to load destinations:', err);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
+router.get('/about', async (req, res) => {
+  try {
+    const team = await About.find();  // Fetch all team members from MongoDB
+    res.render('about', { team });  // Render the about.ejs page and pass team data
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error fetching team members');
+  }
+});
+
+router.get('/gallery', async (req, res) => {
     try {
-      const data = JSON.parse(jsonData);
-      const username = req.cookies?.username || null;
-      res.render('home', {
-        username,
-        about1: data.about1,
-        about2: data.about2
-      });
-    } catch (parseError) {
-      console.error('Failed to parse JSON:', parseError);
-      return res.status(500).json({ error: 'JSON Parsing Error', message: parseError.message });
+        const galleryItems = await Gallery.find({});
+        res.render('gallery', { galleryItems });
+    } catch (err) {
+        res.status(500).send('Error loading gallery');
     }
-  });
 });
 
+// Testimonials route
+router.get('/testimonials', async (req, res) => {
+    try {
+        const testimonials = await Testimonial.find({});
+        res.render('testimonials', { testimonials });
+    } catch (err) {
+        console.error("Error fetching testimonials:", err);
+        res.status(500).send("Internal Server Error");
+    }
+});
 
-
-
-
-
-
-
-module.exports = router // Export the router so it can be used in server.js
+module.exports = router;

@@ -11,6 +11,13 @@ const fs = require('fs');
 const app = express();
 const PORT = 3000;
 
+
+const connectDB = require('./config/db');
+
+// Connect to MongoDB
+connectDB();
+
+
 // Import middlewares
 const logger = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errorHandler');

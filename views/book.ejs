@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Your Trip</title>
+  <title>Book Your Trip: <%= package.name %></title>
   <link rel="stylesheet" href="/css/book.css">
 </head>
 <body>
@@ -11,13 +11,110 @@
   <p><%= package.description %></p>
   <p><strong>Price: <%= package.price %></strong></p>
   
-  <form action="/api/book" method="POST">
-    <input type="hidden" name="packageId" value="<%= package.id %>">
-    <label for="name">Name:</label>
-    <input type="text" name="name" required>
-    <label for="email">Email:</label>
-    <input type="email" name="email" required>
+  <form action="/api/book" method="POST" id="bookingForm">
+    <input type="hidden" name="packageId" value="<%= package._id %>">
+
+    <!-- Contact Information Section -->
+    <section>
+      <h3>Contact Information</h3>
+      
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required placeholder="Enter your full name">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" name="email" required placeholder="e.g. user@example.com">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" name="phone" required 
+               placeholder="e.g. 9876543210" 
+               pattern="^[0-9]{10}$" 
+               title="Phone number must be exactly 10 digits" />
+      </div>
+      
+    </section>
+
+    <!-- Trip Details Section -->
+    <section>
+      <h3>Trip Details</h3>
+      
+      <div class="form-group">
+        <label for="people">Number of People:</label>
+        <input type="number" name="people" min="1" required placeholder="Enter number of people">
+      </div>
+
+      <div class="form-group">
+        <label for="date">Preferred Travel Date:</label>
+        <input type="date" name="date" required>
+      </div>
+    </section>
+
+    <!-- Additional Information Section -->
+    <section>
+      <h3>Additional Information</h3>
+      
+      <div class="form-group">
+        <label for="specialRequests">Special Requests:</label>
+        <textarea name="specialRequests" rows="3" placeholder="Any special requests or notes"></textarea>
+      </div>
+    </section>
+
+    <!-- Submit Button -->
     <button type="submit">Book Now</button>
   </form>
+
+  <!-- Confirmation Step (JavaScript dynamically displays this after form submission) -->
+  <div id="confirmation" style="display: none;">
+    <h3>Confirm Your Booking</h3>
+    <div id="summary"></div>
+    <button onclick="submitForm()">Confirm and Submit</button>
+    <button onclick="editForm()">Edit</button>
+  </div>
+
+  <script>
+    // Client-side validation and confirmation step
+    document.getElementById('bookingForm').addEventListener('submit', function(event) {
+      event.preventDefault();  // Prevent form submission for validation
+      
+      const phone = document.querySelector('[name="phone"]').value;
+      const email = document.querySelector('[name="email"]').value;
+      const date = document.querySelector('[name="date"]').value;
+      
+      // Validate email format
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+      
+      // Show confirmation summary
+      showConfirmationSummary();
+    });
+
+    function showConfirmationSummary() {
+      const summary = document.getElementById('summary');
+      summary.innerHTML = `
+        <p><strong>Name:</strong> ${document.querySelector('[name="name"]').value}</p>
+        <p><strong>Email:</strong> ${document.querySelector('[name="email"]').value}</p>
+        <p><strong>Phone Number:</strong> ${document.querySelector('[name="phone"]').value}</p>
+        <p><strong>Number of People:</strong> ${document.querySelector('[name="people"]').value}</p>
+        <p><strong>Preferred Travel Date:</strong> ${document.querySelector('[name="date"]').value}</p>
+        <p><strong>Special Requests:</strong> ${document.querySelector('[name="specialRequests"]').value}</p>
+      `;
+      document.getElementById('confirmation').style.display = 'block';
+    }
+
+    function submitForm() {
+      document.getElementById('bookingForm').submit();
+    }
+
+    function editForm() {
+      document.getElementById('confirmation').style.display = 'none';
+    }
+  </script>
 </body>
 </html>

@@ -12,11 +12,12 @@
     <% packages.forEach(package => { %>
       <div class="package-card">
         <img src="/<%= package.image %>" alt="<%= package.name %>">
+
         <div class="package-details">
           <h2><%= package.name %></h2>
           <p><%= package.description %></p>
           <p><strong>Price: <%= package.price %></strong></p>
-          <a href="/book/<%= package.id %>" class="book-btn">Book Now</a>
+          <a href="/api/book/<%= package._id %>" class="book-btn">Book Now</a>
         </div>
       </div>
     <% }) %>
