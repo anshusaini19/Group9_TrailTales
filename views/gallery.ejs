@@ -8,17 +8,19 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="logo">TrailTales</div>
-        <nav>
-            <a href="/api/home">Home</a>
-            <a href="/api/about">About</a>
-            <a href="/api/destinations">Destinations</a>
-            <a href="/api/gallery">Gallery</a>
-            <a href="/api/testimonials">Testimonials</a>
-            <a href="/api/contact">Contact</a>
-        </nav>
-    </header>
+    <header class="navbar">
+    <div class="logo">TrailTales</div>
+    <nav>
+        <a href="/api/home">Home</a>
+        <a href="/api/about">About</a>
+        <a href="/api/destinations">Destinations</a>
+        <a href="/api/gallery">Gallery</a>
+        <a href="/api/testimonials">Testimonials</a>
+        <a href="/api/contact">Contact</a>
+        <a href="/api/logout">Logout</a>
+    </nav>
+</header>
+
 
     <div class="gallery-section">
         <div class="gallery-header">
@@ -35,7 +37,7 @@
                         <div class="overlay">
                             <div class="overlay-text">
                                 <p><%= item.title %></p>
-                                <button class="btn-view">View More</button>
+                                
                             </div>
                         </div>
                     </div>
